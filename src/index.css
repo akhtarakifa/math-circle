@@ -1,0 +1,291 @@
+@import url('https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css');
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* ==============================
+   CSS VARIABLES — DESIGN SYSTEM
+   ============================== */
+:root {
+  --bg-primary:     #FFFFFF;
+  --bg-secondary:   #F7F7F5;
+  --bg-sidebar:     #171717;
+  --bg-card:        #FFFFFF;
+
+  --text-primary:   #141414;
+  --text-secondary: #525252;
+  --text-muted:     #A3A3A3;
+  --text-sidebar:   #D4D4D4;
+  --text-sidebar-active: #FFFFFF;
+
+  --accent:         #141414;
+  --accent-mid:     #141414;
+  --border:         #E5E5E5;
+  --border-strong:  #D4D4D4;
+  --hover-bg:       #F5F5F5;
+
+  --success:        #22C55E;
+  --success-bg:     #F0FFF0;
+  --success-text:   #15803D;
+  --error:          #EF4444;
+  --error-bg:       #FFF0F0;
+  --error-text:     #B91C1C;
+  --gray-light:     #F0F0F0;
+
+  --font-serif:  'DM Serif Display', serif;
+  --font-sans:   'DM Sans', sans-serif;
+  --font-mono:   'Fira Mono', monospace;
+}
+
+/* ==============================
+   BASE RESET
+   ============================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ==============================
+   SCROLLBAR STYLING
+   ============================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+/* ==============================
+   KATEX OVERRIDES
+   ============================== */
+.katex {
+  font-size: 1.1em;
+}
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+}
+
+/* ==============================
+   UTILITY CLASSES
+   ============================== */
+.section-padding {
+  padding: 5rem 2rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+.mixed-heading {
+  font-family: var(--font-sans);
+  font-weight: 700;
+}
+
+.mixed-heading span.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ==============================
+   LOADING SCREEN
+   ============================== */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: #141414;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* ==============================
+   SIDEBAR
+   ============================== */
+.sidebar-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-sidebar);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  border: 1px solid transparent;
+}
+
+.sidebar-item:hover {
+  border-color: var(--text-sidebar);
+  background-color: var(--text-sidebar);
+  color: var(--accent) !important;
+}
+
+.sidebar-item:hover span {
+  color: var(--accent) !important;
+}
+
+.sidebar-item.active {
+  color: var(--text-sidebar-active);
+  font-weight: 600;
+  border-color: var(--text-sidebar-active);
+}
+
+/* ==============================
+   FORMULA BOX
+   ============================== */
+.formula-box {
+  background: #141414;
+  color: #ffffff;
+  border: 1px solid #2a2a2a;
+  border-radius: 0.75rem;
+  padding: 1.5rem 2rem;
+  font-family: var(--font-mono);
+  overflow-x: auto;
+  position: relative;
+}
+
+.formula-box .katex {
+  color: #ffffff;
+}
+
+/* ==============================
+   SPOTLIGHT CARD
+   ============================== */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.spotlight-card:hover {
+  border-color: var(--border-strong);
+}
+
+/* ==============================
+   SECTION ALTERNATING BG
+   ============================== */
+.section-alt {
+  background: var(--bg-secondary);
+}
+
+/* ==============================
+   ANIMATIONS
+   ============================== */
+@keyframes draw-circle {
+  from { stroke-dashoffset: 251.2; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.95); opacity: 0.8; }
+  50%  { transform: scale(1.05); opacity: 0.4; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+/* ==============================
+   QUIZ STYLES
+   ============================== */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  60%       { transform: translateX(-5px); }
+  80%       { transform: translateX(5px); }
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* ==============================
+   BORDER BEAM
+   ============================== */
+@keyframes border-beam {
+  100% { offset-distance: 100%; }
+}
+
+/* ==============================
+   PROSE IMPROVEMENTS
+   ============================== */
+.content-prose p {
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.content-prose ul {
+  list-style: none;
+  padding: 0;
+}
+
+.content-prose ul li {
+  padding: 0.3rem 0;
+  padding-left: 1.25rem;
+  position: relative;
+  color: var(--text-secondary);
+}
+
+.content-prose ul li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
