@@ -21,7 +21,7 @@ export function GarisSinggungSection() {
 
               {/* Point P outside */}
               <circle cx="200" cy="120" r="3" fill="var(--text-secondary)" />
-              <text x="206" y="124" fill="var(--text-secondary)" fontSize="11" fontFamily="Fira Mono,monospace">P</text>
+              <text x="206" y="124" fill="var(--text-secondary)" fontSize="11" fontFamily="DM Mono,monospace">P</text>
 
               {/* Tangent lines drawn with animation */}
               <motion.line
@@ -65,10 +65,10 @@ export function GarisSinggungSection() {
               />
 
               {/* Labels */}
-              <text x="88" y="117" fill="var(--text-primary)" fontSize="11" fontFamily="Fira Mono,monospace">O</text>
-              <text x="60" y="48" fill="var(--text-secondary)" fontSize="11" fontFamily="Fira Mono,monospace">T₁</text>
-              <text x="60" y="198" fill="var(--text-secondary)" fontSize="11" fontFamily="Fira Mono,monospace">T₂</text>
-              <text x="140" y="115" fill="var(--text-muted)" fontSize="10" fontFamily="Fira Mono,monospace">OP</text>
+              <text x="88" y="117" fill="var(--text-primary)" fontSize="11" fontFamily="DM Mono,monospace">O</text>
+              <text x="60" y="48" fill="var(--text-secondary)" fontSize="11" fontFamily="DM Mono,monospace">T₁</text>
+              <text x="60" y="198" fill="var(--text-secondary)" fontSize="11" fontFamily="DM Mono,monospace">T₂</text>
+              <text x="140" y="115" fill="var(--text-muted)" fontSize="10" fontFamily="DM Mono,monospace">OP</text>
 
               {/* Equal length indicator */}
               <motion.path
@@ -78,7 +78,7 @@ export function GarisSinggungSection() {
                 viewport={{ once: true }}
                 transition={{ delay: 1.2, duration: 0.5 }}
               />
-              <text x="165" y="80" fill="var(--text-primary)" fontSize="10" fontFamily="Fira Mono,monospace">PT₁=PT₂</text>
+              <text x="165" y="80" fill="var(--text-primary)" fontSize="10" fontFamily="DM Mono,monospace">PT₁=PT₂</text>
             </svg>
           </AnimatedContent>
 

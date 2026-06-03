@@ -38,7 +38,7 @@ export function LuasSection() {
               <circle cx="60" cy="60" r="52" fill="var(--text-secondary)" fillOpacity="0.3" stroke="white" strokeWidth="1.5" />
               <circle cx="60" cy="60" r="2.5" fill="white" />
               <line x1="60" y1="60" x2="112" y2="60" stroke="white" strokeWidth="1.5" strokeDasharray="3 2" />
-              <text x="82" y="54" fill="var(--text-muted)" fontSize="12" fontFamily="Fira Mono,monospace">r</text>
+              <text x="82" y="54" fill="var(--text-muted)" fontSize="12" fontFamily="DM Mono,monospace">r</text>
             </svg>
             <div className="text-white/70 text-sm font-sans leading-relaxed">
               <p className="text-white font-semibold mb-1">Ingat perbedaan:</p>

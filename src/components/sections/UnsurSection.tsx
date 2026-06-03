@@ -5,16 +5,18 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { InfoCard } from '@/components/ui/InfoCard';
 import { unsurData } from '@/data/unsurData';
 
-export function UnsurSection() {
-  const [activeUnsur, setActiveUnsur] = useState<string | null>(null);
+type UnsurId = typeof unsurData[number]['id'];
 
-  const getColor = (id: string) =>
+export function UnsurSection() {
+  const [activeUnsur, setActiveUnsur] = useState<UnsurId | null>(null);
+
+  const getColor = (id: UnsurId) =>
     activeUnsur === id ? 'var(--text-primary)' : 'var(--text-sidebar)';
 
-  const getStrokeWidth = (id: string) =>
+  const getStrokeWidth = (id: UnsurId) =>
     activeUnsur === id ? 2.5 : 1.5;
 
-  const getOpacity = (id: string) =>
+  const getOpacity = (id: UnsurId) =>
     activeUnsur === null || activeUnsur === id ? 1 : 0.25;
 
   return (
@@ -22,9 +24,41 @@ export function UnsurSection() {
       <div className="max-w-3xl mx-auto w-full">
         <SectionHeading sans="Unsur-Unsur" serif="Lingkaran" />
 
+        {/* Tab untuk mobile dan desktop */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.05 }}
+          className="flex justify-center mb-6"
+        >
+          <div className="flex flex-wrap gap-2 p-1 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] overflow-x-auto justify-center">
+            {unsurData.map((unsur) => (
+              <button
+                key={unsur.id}
+                onClick={() => setActiveUnsur(unsur.id)}
+                className={`relative px-3 py-1.5 rounded-lg text-xs font-sans font-medium transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
+                  activeUnsur === unsur.id
+                    ? 'text-white'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                }`}
+                aria-pressed={activeUnsur === unsur.id}
+              >
+                {activeUnsur === unsur.id && (
+                  <motion.span
+                    layoutId="unsur-tab-active"
+                    className="absolute inset-0 bg-[var(--text-primary)] rounded-lg"
+                    transition={{ type: 'spring', bounce: 0.15, duration: 0.3 }}
+                  />
+                )}
+                <span className="relative z-10">{unsur.nama}</span>
+              </button>
+            ))}
+          </div>
+        </motion.div>
+
         <div className="grid lg:grid-cols-2 gap-10 items-start">
           {/* Interactive SVG Diagram */}
-          <div className="flex justify-center sticky top-24">
+          <div className="flex justify-center">
             <svg
               width="280" height="280"
               viewBox="0 0 280 280"
@@ -43,7 +77,7 @@ export function UnsurSection() {
 
               {/* Tembereng / Segment */}
               <motion.path
-                d="M 50 170 A 110 110 0 0 0 140 250 L 50 170 Z"
+                d="M 48 200 A 110 110 0 0 0 140 250 K 50 170 Z"
                 fill={activeUnsur === 'tembereng' ? 'var(--text-secondary)' : 'var(--gray-light)'}
                 data-unsur="tembereng"
                 animate={{ opacity: getOpacity('tembereng') }}
@@ -63,7 +97,7 @@ export function UnsurSection() {
 
               {/* Tali busur */}
               <motion.line
-                x1="50" y1="170" x2="230" y2="170"
+                x1="34.2" y1="170" x2="245.8" y2="170"
                 stroke={getColor('talibusur')}
                 strokeWidth={getStrokeWidth('talibusur')}
                 data-unsur="talibusur"
@@ -116,10 +150,10 @@ export function UnsurSection() {
               />
 
               {/* Labels */}
-              <text x="143" y="137" fill="var(--text-secondary)" fontSize="11" fontFamily="Fira Mono,monospace">O</text>
-              <text x="143" y="88" fill="var(--text-secondary)" fontSize="11" fontFamily="Fira Mono,monospace">r</text>
-              <text x="185" y="136" fill="var(--text-secondary)" fontSize="11" fontFamily="Fira Mono,monospace">d</text>
-              <text x="100" y="165" fill="var(--text-secondary)" fontSize="10" fontFamily="Fira Mono,monospace">a</text>
+              <text x="143" y="137" fill="var(--text-secondary)" fontSize="11" fontFamily="DM Mono,monospace">O</text>
+              <text x="143" y="88" fill="var(--text-secondary)" fontSize="11" fontFamily="DM Mono,monospace">r</text>
+              <text x="185" y="136" fill="var(--text-secondary)" fontSize="11" fontFamily="DM Mono,monospace">d</text>
+              <text x="100" y="165" fill="var(--text-secondary)" fontSize="10" fontFamily="DM Mono,monospace">a</text>
             </svg>
           </div>
 
@@ -129,21 +163,9 @@ export function UnsurSection() {
               <InfoCard
                 key={unsur.id}
                 delay={i * 0.07}
-                className={`cursor-pointer transition-all duration-200 ${
-                  activeUnsur === unsur.id
-                    ? 'border-[var(--text-primary)] shadow-md'
-                    : 'hover:border-[var(--text-muted)]'
-                }`}
+                className="border-[var(--border)]"
               >
-                <div
-                  onMouseEnter={() => setActiveUnsur(unsur.id)}
-                  onMouseLeave={() => setActiveUnsur(null)}
-                  onFocus={() => setActiveUnsur(unsur.id)}
-                  onBlur={() => setActiveUnsur(null)}
-                  tabIndex={0}
-                  role="button"
-                  aria-label={`Highlight ${unsur.nama} pada diagram`}
-                >
+                <div className="pointer-events-none">
                   <div className="flex items-start justify-between mb-2">
                     <span className="font-sans font-semibold text-sm text-[var(--text-primary)]">
                       {unsur.nama}
@@ -158,7 +180,7 @@ export function UnsurSection() {
         </div>
 
         <p className="text-center text-[var(--text-muted)] text-xs font-mono mt-6 uppercase tracking-widest">
-          ↑ Arahkan kursor ke kartu untuk highlight diagram
+          ↑ Pilih unsur di tab atas untuk highlight diagram
         </p>
       </div>
     </section>

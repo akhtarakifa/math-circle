@@ -38,27 +38,29 @@ export function BusurJuringSection() {
 
         {/* Tab switcher */}
         <AnimatedContent delay={0.1}>
-          <div className="flex flex-wrap gap-2 mb-8 p-1 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)]">
-            {tabs.map((tab) => (
-              <button
-                id={`tab-${tab.id}`}
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`relative px-4 py-2 rounded-lg text-sm font-sans font-medium transition-colors duration-200 ${
-                  activeTab === tab.id ? 'text-white' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                }`}
-                aria-pressed={activeTab === tab.id}
-              >
-                {activeTab === tab.id && (
-                  <motion.span
-                    layoutId="tab-active"
-                    className="absolute inset-0 bg-[var(--text-primary)] rounded-lg"
-                    transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
-                  />
-                )}
-                <span className="relative z-10">{tab.label}</span>
-              </button>
-            ))}
+          <div className="flex justify-center mb-8">
+            <div className="flex flex-wrap gap-2 p-1 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] overflow-x-auto justify-center md:justify-start">
+              {tabs.map((tab) => (
+                <button
+                  id={`tab-${tab.id}`}
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`relative px-4 py-2 rounded-lg text-sm font-sans font-medium transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
+                    activeTab === tab.id ? 'text-white' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                  }`}
+                  aria-pressed={activeTab === tab.id}
+                >
+                  {activeTab === tab.id && (
+                    <motion.span
+                      layoutId="tab-active"
+                      className="absolute inset-0 bg-[var(--text-primary)] rounded-lg"
+                      transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
+                    />
+                  )}
+                  <span className="relative z-10">{tab.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </AnimatedContent>
 
@@ -127,7 +129,7 @@ export function BusurJuringSection() {
                 <circle cx={cx} cy={cy} r="3" fill="var(--text-primary)" />
 
                 {/* Angle label */}
-                <text x={cx + 15} y={cy - 10} fill="var(--text-secondary)" fontSize="11" fontFamily="Fira Mono,monospace">
+                <text x={cx + 15} y={cy - 10} fill="var(--text-secondary)" fontSize="11" fontFamily="DM Mono,monospace">
                   α = {angle}°
                 </text>
               </svg>

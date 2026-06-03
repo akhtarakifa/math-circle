@@ -9,11 +9,11 @@ type Hubungan = 'konsentris' | 'dalam' | 'singdalam' | 'berpotongan' | 'singluar
 
 const hubunganData: { id: Hubungan; label: string; syarat: string; desc: string; d: number }[] = [
   { id: 'konsentris', label: 'Konsentris', syarat: 'd = 0', desc: 'Pusat sama, jari-jari beda', d: 0 },
-  { id: 'dalam', label: 'Satu di Dalam', syarat: 'd < R − r', desc: 'Tidak bersentuhan', d: 30 },
-  { id: 'singdalam', label: 'Sing. Dalam', syarat: 'd = R − r', desc: 'Menyentuh 1 titik dari dalam', d: 50 },
-  { id: 'berpotongan', label: 'Berpotongan', syarat: 'R−r < d < R+r', desc: 'Memotong di 2 titik', d: 100 },
-  { id: 'singluar', label: 'Sing. Luar', syarat: 'd = R + r', desc: 'Menyentuh 1 titik dari luar', d: 130 },
-  { id: 'lepas', label: 'Saling Lepas', syarat: 'd > R + r', desc: 'Tidak berpotongan', d: 170 },
+  { id: 'dalam', label: 'Satu di Dalam', syarat: 'd < R − r', desc: 'Tidak bersentuhan', d: 15 },
+  { id: 'singdalam', label: 'Sing. Dalam', syarat: 'd = R − r', desc: 'Menyentuh 1 titik dari dalam', d: 30 },
+  { id: 'berpotongan', label: 'Berpotongan', syarat: 'R−r < d < R+r', desc: 'Memotong di 2 titik', d: 70 },
+  { id: 'singluar', label: 'Sing. Luar', syarat: 'd = R + r', desc: 'Menyentuh 1 titik dari luar', d: 90 },
+  { id: 'lepas', label: 'Saling Lepas', syarat: 'd > R + r', desc: 'Tidak berpotongan', d: 110 },
 ];
 
 export function HubunganSection() {
@@ -38,13 +38,13 @@ export function HubunganSection() {
         <AnimatedContent delay={0.15}>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-2xl p-6 mb-8">
             {/* Tab buttons */}
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2 mb-6 overflow-x-auto">
               {hubunganData.map((h) => (
                 <button
                   id={`hubungan-${h.id}`}
                   key={h.id}
                   onClick={() => setActive(h.id)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-sans font-medium border transition-all duration-200 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-sans font-medium border transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
                     active === h.id
                       ? 'bg-[var(--text-primary)] text-white border-[var(--text-primary)]'
                       : 'bg-white text-[var(--text-secondary)] border-[var(--border)] hover:border-[var(--text-muted)]'
@@ -70,8 +70,8 @@ export function HubunganSection() {
                 {/* Circle 1 — fixed */}
                 <circle cx={cx1} cy={cy} r={R} stroke="var(--text-primary)" strokeWidth="1.5" fill="var(--text-primary)" fillOpacity="0.05" />
                 <circle cx={cx1} cy={cy} r="3" fill="var(--text-primary)" />
-                <text x={cx1 - 6} y={cy - 8} fill="var(--text-primary)" fontSize="11" fontFamily="Fira Mono,monospace">O₁</text>
-                <text x={cx1 - 34} y={cy + 4} fill="var(--text-muted)" fontSize="10" fontFamily="Fira Mono,monospace">R={R}</text>
+                <text x={cx1 - 6} y={cy - 8} fill="var(--text-primary)" fontSize="11" fontFamily="DM Mono,monospace">O₁</text>
+                <text x={cx1 - 34} y={cy + 4} fill="var(--text-muted)" fontSize="10" fontFamily="DM Mono,monospace">R={R}</text>
 
                 {/* Circle 2 — animated via translateX on <g> */}
                 <motion.g
@@ -80,7 +80,7 @@ export function HubunganSection() {
                 >
                   <circle cx={cx1} cy={cy} r={r} stroke="var(--text-secondary)" strokeWidth="1.5" fill="var(--text-secondary)" fillOpacity="0.08" />
                   <circle cx={cx1} cy={cy} r="3" fill="var(--text-secondary)" />
-                  <text x={cx1 - 6} y={cy - 8} fill="var(--text-secondary)" fontSize="11" fontFamily="Fira Mono,monospace">O₂</text>
+                  <text x={cx1 - 6} y={cy - 8} fill="var(--text-secondary)" fontSize="11" fontFamily="DM Mono,monospace">O₂</text>
                 </motion.g>
               </svg>
             </div>

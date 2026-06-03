@@ -10,7 +10,7 @@ export function SudutDalamLuarSection() {
       <div className="max-w-3xl mx-auto w-full">
         <SectionHeading sans="Sudut Dalam &" serif="Luar Lingkaran" />
 
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {/* Sudut Dalam */}
           <AnimatedContent delay={0.1}>
             <div className="bg-white border border-[var(--border)] rounded-xl p-6 h-full">

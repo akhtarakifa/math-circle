@@ -9,7 +9,7 @@ export default {
       fontFamily: {
         serif: ['"DM Serif Display"', 'serif'],
         sans:  ['"DM Sans"', 'sans-serif'],
-        mono:  ['"Fira Mono"', 'monospace'],
+        mono:  ['"DM Mono"', 'monospace'],
       },
       colors: {
         'bg-primary':    '#FFFFFF',

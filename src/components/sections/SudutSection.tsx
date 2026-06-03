@@ -58,10 +58,10 @@ export function SudutSection() {
                     <circle cx={ccx} cy={ccy} r="3" fill="var(--text-secondary)" />
 
                     {/* Labels */}
-                    <text x={cx - 12} y={cy + 4} fill="var(--text-primary)" fontSize="12" fontFamily="Fira Mono,monospace">O</text>
-                    <text x={ax - 16} y={ay + 5} fill="var(--text-primary)" fontSize="11" fontFamily="Fira Mono,monospace">A</text>
-                    <text x={bx + 4} y={by + 5} fill="var(--text-primary)" fontSize="11" fontFamily="Fira Mono,monospace">B</text>
-                    <text x={ccx - 5} y={ccy - 8} fill="var(--text-secondary)" fontSize="11" fontFamily="Fira Mono,monospace">C</text>
+                    <text x={cx - 12} y={cy + 4} fill="var(--text-primary)" fontSize="12" fontFamily="DM Mono,monospace">O</text>
+                    <text x={ax - 16} y={ay + 5} fill="var(--text-primary)" fontSize="11" fontFamily="DM Mono,monospace">A</text>
+                    <text x={bx + 4} y={by + 5} fill="var(--text-primary)" fontSize="11" fontFamily="DM Mono,monospace">B</text>
+                    <text x={ccx - 5} y={ccy - 8} fill="var(--text-secondary)" fontSize="11" fontFamily="DM Mono,monospace">C</text>
 
                     {/* Legend */}
                     <line x1="10" y1="200" x2="30" y2="200" stroke="var(--text-primary)" strokeWidth="1.5" />

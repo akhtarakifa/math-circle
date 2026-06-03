@@ -11,7 +11,7 @@ export const sidebarItems: SidebarItem[] = [
   { id: 'arsiran',        label: 'Luas Arsiran',   href: '#arsiran',        icon: '◑' },
   { id: 'sudut',          label: 'Sudut',          href: '#sudut',          icon: '∠' },
   { id: 'sudut-luar-dalam', label: 'Sdut Dlm & Luar', href: '#sudut-luar-dalam', icon: '∢' },
-  { id: 'hubungan',       label: 'Hubungan Dua ⭕', href: '#hubungan',       icon: '⊙' },
+  { id: 'hubungan',       label: 'Hubungan Dua 〇', href: '#hubungan',       icon: '⊙' },
   { id: 'singgung',       label: 'Garis Singgung', href: '#singgung',       icon: '⊥' },
   { id: 'persamaan',      label: 'Persamaan',      href: '#persamaan',      icon: 'ƒ' },
   { id: 'posisi',         label: 'Posisi Titik',   href: '#posisi',         icon: '·' },

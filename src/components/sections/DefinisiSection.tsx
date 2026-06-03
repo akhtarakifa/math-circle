@@ -66,9 +66,9 @@ export function DefinisiSection() {
                   transition={{ delay: 0.8, duration: 0.6 }}
                 />
                 {/* Label r */}
-                <text x="152" y="106" fill="var(--text-secondary)" fontSize="13" fontFamily="Fira Mono, monospace">r</text>
+                <text x="152" y="106" fill="var(--text-secondary)" fontSize="13" fontFamily="DM Mono, monospace">r</text>
                 {/* Label O */}
-                <text x="96" y="110" fill="var(--text-primary)" fontSize="12" fontFamily="Fira Mono, monospace">O</text>
+                <text x="96" y="110" fill="var(--text-primary)" fontSize="12" fontFamily="DM Mono, monospace">O</text>
 
                 {/* Perimeter dots — staggered appearance */}
                 {dots.map((i) => {
