@@ -1,5 +1,6 @@
 // src/components/layout/Sidebar.tsx
 import { sidebarItems } from '@/data/sidebarItems';
+import { scrollToSection } from '@/utils/navigation';
 
 interface SidebarProps {
   activeSection: string;
@@ -8,10 +9,11 @@ interface SidebarProps {
 export function Sidebar({ activeSection }: SidebarProps) {
   const handleNav = (href: string) => {
     const id = href.replace('#', '');
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    scrollToSection(id);
+  };
+
+  const handleLogoClick = () => {
+    scrollToSection('hero');
   };
 
   return (
@@ -21,8 +23,13 @@ export function Sidebar({ activeSection }: SidebarProps) {
       role="navigation"
       aria-label="Navigasi utama"
     >
-      {/* Logo */}
-      <div className="px-5 py-4 border-b border-white/5">
+      {/* Logo - Clickable */}
+      <button
+        onClick={handleLogoClick}
+        className="px-5 py-4 border-b border-white/5 hover:bg-white/5 transition-colors duration-200 cursor-pointer"
+        aria-label="Kembali ke beranda (MathCircle)"
+        title="Kembali ke beranda"
+      >
         <div className="flex items-center gap-2.5">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
             <circle cx="16" cy="16" r="12" stroke="white" strokeWidth="2" />
@@ -31,7 +38,7 @@ export function Sidebar({ activeSection }: SidebarProps) {
           </svg>
           <span className="text-white font-sans font-bold text-xl tracking-tight">MathCircle</span>
         </div>
-      </div>
+      </button>
 
       {/* Nav items with scroll */}
       <div className="flex-1 relative overflow-hidden">

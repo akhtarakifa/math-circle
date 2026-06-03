@@ -1,66 +1,23 @@
 // src/components/sections/KuisSection.tsx
-import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { quizQuestions } from '@/data/quizData';
-import { QuizState } from '@/types';
 import { CheckCircle, XCircle, RotateCcw, Trophy } from 'lucide-react';
-
-const initialState: QuizState = {
-  currentQuestion: 0,
-  answers: Array(quizQuestions.length).fill(null),
-  submitted: Array(quizQuestions.length).fill(false),
-  isFinished: false,
-  score: 0,
-};
+import { useQuizState } from '@/hooks/useQuizState';
 
 export function KuisSection() {
-  const [state, setState] = useState<QuizState>(initialState);
-  const [shake, setShake] = useState(false);
-  const [showSpark, setShowSpark] = useState(false);
-
-  const current = quizQuestions[state.currentQuestion];
-  const progress = ((state.currentQuestion) / quizQuestions.length) * 100;
-
-  const handleAnswer = useCallback((idx: number) => {
-    if (state.submitted[state.currentQuestion]) return;
-
-    const isCorrect = idx === current.correctIndex;
-    const newAnswers = [...state.answers];
-    const newSubmitted = [...state.submitted];
-    newAnswers[state.currentQuestion] = idx;
-    newSubmitted[state.currentQuestion] = true;
-
-    const newScore = state.score + (isCorrect ? 1 : 0);
-
-    setState((prev) => ({ ...prev, answers: newAnswers, submitted: newSubmitted, score: newScore }));
-
-    if (isCorrect) {
-      setShowSpark(true);
-      setTimeout(() => setShowSpark(false), 800);
-    } else {
-      setShake(true);
-      setTimeout(() => setShake(false), 500);
-    }
-  }, [state, current]);
-
-  const handleNext = useCallback(() => {
-    if (state.currentQuestion + 1 >= quizQuestions.length) {
-      setState((prev) => ({ ...prev, isFinished: true }));
-    } else {
-      setState((prev) => ({ ...prev, currentQuestion: prev.currentQuestion + 1 }));
-    }
-  }, [state.currentQuestion]);
-
-  const reset = () => setState(initialState);
-
-  const scorePercent = Math.round((state.score / quizQuestions.length) * 100);
-  const getMessage = () => {
-    if (scorePercent >= 90) return 'Luar biasa! Kamu sangat menguasai materi lingkaran!';
-    if (scorePercent >= 70) return 'Bagus! Kamu sudah paham sebagian besar materinya.';
-    if (scorePercent >= 50) return 'Cukup baik! Pelajari lagi bagian yang belum dipahami.';
-    return 'Jangan menyerah! Ulangi materi dan coba lagi.';
-  };
+  const {
+    state,
+    current,
+    progress,
+    shake,
+    showSpark,
+    handleAnswer,
+    handleNext,
+    reset,
+    scorePercent,
+    getMessage,
+  } = useQuizState();
 
   return (
     <section id="kuis" className="section-padding bg-white">
@@ -195,7 +152,7 @@ export function KuisSection() {
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
                   >
-                    <span className="text-3xl"></span>
+                    <span className="text-3xl">✨</span>
                   </motion.div>
                 )}
               </motion.div>

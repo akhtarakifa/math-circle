@@ -1,10 +1,11 @@
 // src/components/sections/HeroSection.tsx
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
+import { scrollToSection } from '@/utils/navigation';
 
 export function HeroSection() {
   const scrollToDefinisi = () => {
-    document.getElementById('definisi')?.scrollIntoView({ behavior: 'smooth' });
+    scrollToSection('definisi');
   };
 
   return (
@@ -61,7 +62,7 @@ export function HeroSection() {
           transition={{ delay: 0.2, duration: 0.6 }}
         >
           <span className="text-white/40 text-xs font-mono uppercase tracking-widest">
-            Matematika · Kelas XI SMK · 2024/2025
+            Matematika · Kelas XI SMK · 2025/2026
           </span>
         </motion.div>
 

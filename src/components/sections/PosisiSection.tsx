@@ -45,9 +45,9 @@ export function PosisiSection() {
             13.2 Posisi Garis terhadap Lingkaran
           </h3>
           <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-4">
-            Untuk garis y = mx + c terhadap lingkaran x² + y² = r², gunakan diskriminan persamaan kuadrat hasil substitusi.
+            Untuk garis y = mx + c terhadap lingkaran x² + y² = r², substitusikan garis ke persamaan lingkaran untuk mendapat persamaan kuadrat. Gunakan diskriminan D = b² − 4ac.
           </p>
-          <FormulaBox label="Diskriminan" formula="D = 4\left[r^2(1 + m^2) - c^2\right]" />
+          <FormulaBox label="Diskriminan" formula="D = b^2 - 4ac" />
           <MathTable
             headers={['Diskriminan', 'Posisi Garis', 'Titik Potong']}
             rows={[
@@ -60,19 +60,29 @@ export function PosisiSection() {
 
         <AnimatedContent delay={0.2}>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5 my-4">
-            <p className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-widest mb-2">Syarat Garis Singgung</p>
-            <p className="text-[var(--text-secondary)] text-sm mb-2">Jika D = 0:</p>
-            <FormulaBox formula="c^2 = r^2(1 + m^2) \implies c = \pm r\sqrt{1+m^2}" display={false} />
+            <p className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-widest mb-2">Cara Menentukan Koefisien a, b, c</p>
+            <p className="text-[var(--text-secondary)] text-sm mb-3">Substitusi y = mx + c ke x² + y² = r²:</p>
+            <p className="text-[var(--text-secondary)] text-sm mb-2">x² + (mx + c)² = r²</p>
+            <p className="text-[var(--text-secondary)] text-sm mb-2">x² + m²x² + 2mcx + c² = r²</p>
+            <p className="text-[var(--text-secondary)] text-sm font-mono">(1 + m²)x² + 2mcx + (c² − r²) = 0</p>
+            <p className="text-[var(--text-secondary)] text-sm mt-2">Maka: a = 1 + m²,  b = 2mc,  c = c² − r²</p>
           </div>
         </AnimatedContent>
 
         <ContohSoal variant="primary" nomor={2}
           soal="Garis y = 2x + c menyinggung lingkaran x² + y² = 5. Tentukan nilai c!"
           penyelesaian={[
-            'm = 2, r² = 5',
-            'Syarat singgung: c² = r²(1 + m²)',
-            'c² = 5 × (1 + 4) = 25',
-            'c = ±5',
+            'Substitusi y = 2x + c ke x² + y² = 5:',
+            'x² + (2x + c)² = 5',
+            'x² + 4x² + 4cx + c² = 5',
+            '5x² + 4cx + (c² − 5) = 0',
+            'a = 5, b = 4c, c = (c² − 5)',
+            'Syarat singgung: D = 0',
+            'b² − 4ac = 0',
+            '(4c)² − 4(5)(c² − 5) = 0',
+            '16c² − 20c² + 100 = 0',
+            '−4c² + 100 = 0',
+            'c² = 25 → c = ±5',
           ]}
           jawaban="c = ±5, garis: y = 2x + 5 atau y = 2x − 5"
         />
@@ -80,9 +90,17 @@ export function PosisiSection() {
         <ContohSoal variant="primary" nomor={3}
           soal="Garis y = 3x + c menyinggung lingkaran x² + y² = 10. Tentukan nilai c!"
           penyelesaian={[
-            'm = 3, r² = 10',
-            'c² = r²(1 + m²) = 10 × (1 + 9) = 100',
-            'c = ±10',
+            'Substitusi y = 3x + c ke x² + y² = 10:',
+            'x² + (3x + c)² = 10',
+            'x² + 9x² + 6cx + c² = 10',
+            '10x² + 6cx + (c² − 10) = 0',
+            'a = 10, b = 6c, c = (c² − 10)',
+            'Syarat singgung: D = 0',
+            'b² − 4ac = 0',
+            '(6c)² − 4(10)(c² − 10) = 0',
+            '36c² − 40c² + 400 = 0',
+            '−4c² + 400 = 0',
+            'c² = 100 → c = ±10',
           ]}
           jawaban="c = ±10"
         />

@@ -79,7 +79,7 @@ export const quizQuestions: QuizQuestion[] = [
     question: 'Garis y = 3x + c menyinggung lingkaran x² + y² = 10. Nilai c yang mungkin adalah...',
     options: ['±5', '±3', '±√90', '±10'],
     correctIndex: 3,
-    explanation: 'Syarat singgung: c² = r²(1 + m²) = 10 × (1 + 9) = 100 → c = ±10',
+    explanation: 'Substitusi y = 3x + c ke x² + y² = 10: 10x² + 6cx + (c² − 10) = 0. Syarat singgung D = 0: (6c)² − 4(10)(c² − 10) = 0 → 36c² − 40c² + 400 = 0 → c² = 100 → c = ±10',
     topic: 'posisi',
   },
 ];

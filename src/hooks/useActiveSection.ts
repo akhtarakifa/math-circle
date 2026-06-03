@@ -35,9 +35,9 @@ export function useActiveSection(ids: string[]): string {
           }
         }
       },
-      { 
-        threshold: [0, 0.25, 0.5, 0.75, 1],
-        rootMargin: '-5% 0px -70% 0px'
+      {
+        threshold: [0, 0.25, 0.5, 0.75, 1] as number[],
+        rootMargin: '-5% 0px -70% 0px',
       }
     );
 

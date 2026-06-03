@@ -42,20 +42,20 @@ export function SudutDalamLuarSection() {
             <div className="bg-white border border-[var(--border)] rounded-xl p-6 h-full">
               <span className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-widest">Sudut Luar</span>
               <h3 className="font-sans font-semibold text-[var(--text-primary)] mt-2 mb-3">
-                Titik Sudut di Luar Lingkaran
+                Dua Garis Sekan dari Titik di Luar
               </h3>
               <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-4">
-                Berlaku untuk: 2 sekan, 1 sekan + 1 singgung, atau 2 singgung.
+                Jika dua garis sekan dari titik P di luar lingkaran memotong lingkaran di titik A, B, C, dan D:
               </p>
               <FormulaBox
-                label="Rumus Sudut Luar (semua kasus)"
-                formula="\angle P = \frac{1}{2}|\text{busur jauh} - \text{busur dekat}|"
+                label="Rumus Sudut Luar"
+                formula="\angle P = \frac{1}{2}(\overset{\frown}{AD} - \overset{\frown}{BC})"
               />
               <div className="mt-3 space-y-1.5">
                 {[
-                  'Kasus 1: Dua garis sekan',
-                  'Kasus 2: Satu sekan + satu singgung',
-                  'Kasus 3: Dua garis singgung',
+                  '∠P = sudut di luar lingkaran',
+                  '⌢AD = busur jauh (dari kedua titik)',
+                  '⌢BC = busur dekat (antara kedua titik)',
                 ].map((s) => (
                   <p key={s} className="text-[var(--text-secondary)] text-xs font-mono leading-relaxed">• {s}</p>
                 ))}
@@ -78,10 +78,10 @@ export function SudutDalamLuarSection() {
             jawaban="∠APB = 80°"
           />
           <ContohSoal variant="primary" nomor={2}
-            soal="Dari titik P di luar lingkaran, dua sekan memotong lingkaran. Busur jauh = 130°, busur dekat = 50°. Hitung ∠P!"
+            soal="Dari titik P di luar lingkaran, dua sekan memotong lingkaran. Busur AB = 130° (busur jauh), Busur CD = 50° (busur dekat). Hitung ∠P!"
             penyelesaian={[
-              '∠P = ½ × |busur jauh − busur dekat|',
-              '= ½ × |130° − 50°|',
+              '∠P = ½ × (⌢AB − ⌢CD)',
+              '= ½ × (130° − 50°)',
               '= ½ × 80° = 40°',
             ]}
             jawaban="∠P = 40°"

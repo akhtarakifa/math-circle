@@ -30,7 +30,7 @@ export function Footer() {
           <div className="text-right">
             <p className="text-[var(--text-sidebar)] font-sans text-sm font-medium">Akhtar</p>
             <p className="text-[var(--text-secondary)] text-xs font-mono mt-0.5">XI SIJA 1 · SMK Negeri 7 Semarang</p>
-            <p className="text-[var(--text-secondary)] text-xs font-mono">Matematika · Tahun Ajaran 2024/2025</p>
+            <p className="text-[var(--text-secondary)] text-xs font-mono">Matematika · Tahun Ajaran 2025/2026</p>
           </div>
         </motion.div>
 
@@ -43,7 +43,7 @@ export function Footer() {
           transition={{ delay: 0.2, duration: 0.6 }}
         >
           <p className="text-[var(--text-secondary)] text-xs font-mono">
-            MathCircle © 2025 — Akhtar, XI SIJA 1
+            MathCircle © 2026 — Akhtar, XI SIJA 1
           </p>
         </motion.div>
 

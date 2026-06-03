@@ -2,6 +2,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { sidebarItems } from '@/data/sidebarItems';
+import { scrollToSection } from '@/utils/navigation';
+import { useFocusTrap } from '@/hooks/useFocusTrap';
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -10,12 +12,16 @@ interface MobileSidebarProps {
 }
 
 export function MobileSidebar({ isOpen, onClose, activeSection }: MobileSidebarProps) {
+  const focusTrapRef = useFocusTrap(isOpen);
+
   const handleNav = (href: string) => {
     const id = href.replace('#', '');
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    scrollToSection(id);
+    onClose();
+  };
+
+  const handleLogoClick = () => {
+    scrollToSection('hero');
     onClose();
   };
 
@@ -35,6 +41,7 @@ export function MobileSidebar({ isOpen, onClose, activeSection }: MobileSidebarP
 
           {/* Drawer */}
           <motion.aside
+            ref={focusTrapRef}
             className="fixed left-0 top-0 h-full bg-[var(--text-primary)] z-50 flex flex-col lg:hidden w-full max-w-[280px]"
             initial={{ x: '-100%' }}
             animate={{ x: 0 }}
@@ -42,17 +49,23 @@ export function MobileSidebar({ isOpen, onClose, activeSection }: MobileSidebarP
             transition={{ type: 'spring', damping: 28, stiffness: 300 }}
             role="navigation"
             aria-label="Navigasi mobile"
+            aria-modal="true"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-5 border-b border-white/5">
-              <div className="flex items-center gap-2.5">
+              <button
+                onClick={handleLogoClick}
+                className="flex items-center gap-2.5 hover:opacity-80 transition-opacity duration-200 cursor-pointer"
+                aria-label="Kembali ke beranda (MathCircle)"
+                title="Kembali ke beranda"
+              >
                 <svg width="20" height="20" viewBox="0 0 22 22" fill="none" aria-hidden="true">
                   <circle cx="11" cy="11" r="8" stroke="white" strokeWidth="1.5" />
                   <circle cx="11" cy="11" r="1.5" fill="white" />
                   <line x1="11" y1="11" x2="11" y2="3" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
                 <span className="text-white font-sans font-bold text-base tracking-tight">MathCircle</span>
-              </div>
+              </button>
               <button
                 id="mobile-sidebar-close"
                 onClick={onClose}

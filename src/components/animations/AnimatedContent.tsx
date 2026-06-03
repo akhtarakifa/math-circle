@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 
 interface AnimatedContentProps {
   children: ReactNode;
-  initial?: Record<string, unknown>;
-  animate?: Record<string, unknown>;
   inViewThreshold?: number;
   delay?: number;
   className?: string;
