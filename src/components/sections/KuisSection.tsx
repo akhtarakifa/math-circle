@@ -152,7 +152,7 @@ export function KuisSection() {
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
                   >
-                    <span className="text-3xl">✨</span>
+                    <span className="text-3xl"></span>
                   </motion.div>
                 )}
               </motion.div>

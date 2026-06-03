@@ -1,6 +1,6 @@
 // src/components/sections/HubunganSection.tsx
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, useMotionValue, animate } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { MathTable } from '@/components/ui/MathTable';
 import { AnimatedContent } from '@/components/animations/AnimatedContent';
@@ -19,9 +19,23 @@ const hubunganData: { id: Hubungan; label: string; syarat: string; desc: string;
 export function HubunganSection() {
   const [active, setActive] = useState<Hubungan>('konsentris');
   const current = hubunganData.find((h) => h.id === active)!;
+  
+  // Gunakan motion value untuk animasi yang lebih reliable di production
+  const cx2Motion = useMotionValue(100);
+  const textXMotion = useMotionValue(94);
 
   const R = 60, r = 30;
   const cx1 = 100, cy = 100;
+
+  // Trigger animasi ketika active section berubah
+  useEffect(() => {
+    const targetCx = cx1 + current.d;
+    const targetTextX = cx1 - 6 + current.d;
+    
+    // Animasi menggunakan animate() dari framer-motion untuk lebih reliable
+    animate(cx2Motion, targetCx, { type: 'spring', stiffness: 180, damping: 22 });
+    animate(textXMotion, targetTextX, { type: 'spring', stiffness: 180, damping: 22 });
+  }, [active, current.d, cx2Motion, textXMotion]);
 
   return (
     <section id="hubungan" className="section-padding bg-white">
@@ -73,15 +87,31 @@ export function HubunganSection() {
                 <text x={cx1 - 6} y={cy - 8} fill="var(--text-primary)" fontSize="11" fontFamily="DM Mono,monospace">O₁</text>
                 <text x={cx1 - 34} y={cy + 4} fill="var(--text-muted)" fontSize="10" fontFamily="DM Mono,monospace">R={R}</text>
 
-                {/* Circle 2 — animated via translateX on <g> */}
-                <motion.g
-                  animate={{ x: current.d }}
-                  transition={{ type: 'spring', stiffness: 180, damping: 22 }}
+                {/* Circle 2 — gunakan motion values untuk animasi lebih reliable */}
+                <motion.circle
+                  cx={cx2Motion}
+                  cy={cy}
+                  r={r}
+                  stroke="var(--text-secondary)"
+                  strokeWidth="1.5"
+                  fill="var(--text-secondary)"
+                  fillOpacity="0.08"
+                />
+                <motion.circle
+                  cx={cx2Motion}
+                  cy={cy}
+                  r="3"
+                  fill="var(--text-secondary)"
+                />
+                <motion.text
+                  x={textXMotion}
+                  y={cy - 8}
+                  fill="var(--text-secondary)"
+                  fontSize="11"
+                  fontFamily="DM Mono,monospace"
                 >
-                  <circle cx={cx1} cy={cy} r={r} stroke="var(--text-secondary)" strokeWidth="1.5" fill="var(--text-secondary)" fillOpacity="0.08" />
-                  <circle cx={cx1} cy={cy} r="3" fill="var(--text-secondary)" />
-                  <text x={cx1 - 6} y={cy - 8} fill="var(--text-secondary)" fontSize="11" fontFamily="DM Mono,monospace">O₂</text>
-                </motion.g>
+                  O₂
+                </motion.text>
               </svg>
             </div>
 

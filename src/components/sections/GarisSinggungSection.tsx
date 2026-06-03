@@ -124,7 +124,6 @@ export function GarisSinggungSection() {
           penyelesaian={[
             'GSPL = √(d² − (R−r)²) = √(13² − (8−3)²)',
             '= √(169 − 25) = √144 = 12 cm',
-            '',
             'Cek syarat GSPD: d=13 > R+r=11 ✓',
             'GSPD = √(d² − (R+r)²) = √(13² − (8+3)²)',
             '= √(169 − 121) = √48 = 4√3 ≈ 6,93 cm',
